@@ -1,5 +1,6 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FlagPole : MonoBehaviour
@@ -10,10 +11,19 @@ public class FlagPole : MonoBehaviour
     public float speed = 6f;
     public int nextWorld = 1;
     public int nextStage = 1;
+
+    AudioManager audioManager;
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            audioManager.StopBackgroundMusic();
+            audioManager.PlaySFX(audioManager.flagPoge);
             StartCoroutine(MoveTo(flag, poleBottom.position));
             StartCoroutine(LevelCompleteSequence(collision.transform));
         }
@@ -21,6 +31,7 @@ public class FlagPole : MonoBehaviour
 
     private IEnumerator LevelCompleteSequence(Transform player)
     {
+        audioManager.PlaySFX(audioManager.stageClear);
         player.GetComponent<PlayerMove>().enabled = false;
 
         yield return MoveTo(player, poleBottom.position);

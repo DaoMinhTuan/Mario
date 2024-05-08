@@ -36,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6474352976022077983
 SpriteRenderer:
@@ -210,4 +210,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 6474352976022077983}
-  deadSprite: {fileID: 0}
+  deadSprite: {fileID: 2119139375, guid: c70505697bfc98b46a537f1230da95a4, type: 3}
