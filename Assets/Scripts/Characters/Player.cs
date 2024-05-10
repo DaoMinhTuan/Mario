@@ -38,7 +38,6 @@ public class Player : MonoBehaviour
         }
        
     }
-
     private void Death()
     {
         audioManager.StopBackgroundMusic();

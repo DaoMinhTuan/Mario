@@ -23,13 +23,20 @@ public class ScoreManager: MonoBehaviour
         UpdateScoreUI();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    // ham nay duoc goi khi mario thu thap power up
+    public void EatingPowerUp()
     {
-        if (collision.CompareTag("item"))
-        {
-            score += 1000;
-            UpdateScoreUI();
-        }
+        score += 1000;
+        UpdateScoreUI();
+    }
+
+    public void UpdateScoreFromTimeBonus(int timeBonus)
+    {
+        int timeBonusMultiplier = 10; //ty le de chuyen doi thoi gian con lai thanh diem so
+        int timeBonusScore = timeBonus * timeBonusMultiplier;
+        score += timeBonusScore;
+
+        UpdateScoreUI();
     }
 
     void UpdateScoreUI()

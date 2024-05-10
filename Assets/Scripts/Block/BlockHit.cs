@@ -9,13 +9,11 @@ public class BlockHit : MonoBehaviour
 
     private bool animating;
     private Animator anim;
-    ScoreManager scoreManager;
 
 
     private void Start()
     {
         anim = GetComponent<Animator>();
-        scoreManager = GetComponent<ScoreManager>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -45,11 +43,6 @@ public class BlockHit : MonoBehaviour
         {
             Instantiate(item, transform.position, Quaternion.identity);
 
-            // kiem tra neu dong xu la mot doi tuong co tag la coin
-            if (item.CompareTag("Coin"))
-            {
-                //scoreManager.AddScore();
-            }
         }
         StartCoroutine(Animate());
     }

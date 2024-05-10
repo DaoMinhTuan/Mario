@@ -5,12 +5,12 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour
 {
     AudioManager audioManager;
-
+    ScoreManager scoreManager;
 
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-        
+        scoreManager = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreManager>();
     }
     public enum Type
     {
@@ -35,6 +35,7 @@ public class PowerUp : MonoBehaviour
         switch (type) { 
              case Type.Coin:
                 audioManager.PlaySFX(audioManager.coin);
+                scoreManager.AddScore();
                 GameManager.Instance.AddCoin();
                 break;
 
@@ -44,11 +45,13 @@ public class PowerUp : MonoBehaviour
 
             case Type.MagicMushroom:
                 audioManager.PlaySFX(audioManager.powerUp);
+                scoreManager.EatingPowerUp();
                 player.GetComponent<Player>().Grow();
                 break;
 
             case Type.Starpower:
                 audioManager.PlaySFX(audioManager.powerUp);
+                scoreManager.EatingPowerUp();
                 player.GetComponent<Player>().Starpower();
                 break;
         }

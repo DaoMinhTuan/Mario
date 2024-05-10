@@ -31,7 +31,7 @@ public class PlayerMove : MonoBehaviour
         collider = GetComponent<Collider2D>();
         camera =  Camera.main;
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-        scoreManager = GetComponent<ScoreManager>();
+        scoreManager = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreManager>();
         player = GetComponent<Player>();
     }
 

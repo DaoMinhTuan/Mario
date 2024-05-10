@@ -1,26 +1,29 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BlockCoin : MonoBehaviour
 {
     AudioManager audioManager;
-
+    ScoreManager scoreManager;
     private void Start()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        scoreManager = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreManager>();
         GameManager.Instance.AddCoin();
         StartCoroutine(Animate());
     }
     private IEnumerator Animate()
     {
         audioManager.PlaySFX(audioManager.coin);
+        scoreManager.AddScore();
         Vector3 restingPosition = transform.localPosition;
         Vector3 animatedPosition = restingPosition + Vector3.up * 2f;
 
         yield return Move(restingPosition, animatedPosition);
         yield return Move(animatedPosition, restingPosition);
-
+       
         Destroy(gameObject);
 
     }

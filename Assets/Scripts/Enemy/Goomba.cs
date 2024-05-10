@@ -5,9 +5,9 @@ public class Goomba : MonoBehaviour
     public Sprite flatSprite;
     ScoreManager scoreManager;
 
-    private void Awake()
+    private void Start()
     {
-        scoreManager = GetComponent<ScoreManager>();
+        scoreManager = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreManager>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -19,6 +19,7 @@ public class Goomba : MonoBehaviour
             if(player.starpower)
             {
                 Hit();
+                scoreManager.DefeatEnemy();
             }
             else if (collision.transform.DotTest(transform, Vector2.down))
             {

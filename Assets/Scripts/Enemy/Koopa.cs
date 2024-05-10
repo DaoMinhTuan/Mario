@@ -8,6 +8,13 @@ public class Koopa : MonoBehaviour
     private bool shelled;
     private bool pushed;
 
+    ScoreManager scoreManager;
+
+    private void Start()
+    {
+        scoreManager = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreManager>();
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
@@ -17,6 +24,7 @@ public class Koopa : MonoBehaviour
             if (player.starpower)
             {
                 Hit();
+                scoreManager.DefeatEnemy();
             }
             else if (collision.transform.DotTest(transform, Vector2.down))
             {
@@ -45,15 +53,18 @@ public class Koopa : MonoBehaviour
                 if (player.starpower)
                 {
                     Hit();
+                    scoreManager.DefeatEnemy();
                 }
                 else
                 {
                     player.Hit();
+                    scoreManager.DefeatEnemy();
                 }
             }
         }else if(!shelled && other.gameObject.layer == LayerMask.NameToLayer("Shell"))
         {
             Hit();
+            scoreManager.DefeatEnemy();
         }
     }
 

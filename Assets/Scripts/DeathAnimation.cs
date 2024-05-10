@@ -5,6 +5,7 @@ public class DeathAnimation : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
     public Sprite deadSprite;
+   
 
     private void Reset()
     {
@@ -52,6 +53,7 @@ public class DeathAnimation : MonoBehaviour
 
     private IEnumerator Animate()
     {
+       
         float elapsed = 0f;// khoan thoi gian da troi qua
         float duration = 3f;// thoi luong cua hoat anh
 
