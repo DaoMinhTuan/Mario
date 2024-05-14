@@ -5,7 +5,7 @@ public class Player : MonoBehaviour
 {
     public PlayerSpriteRenderer smallRenderer;
     public PlayerSpriteRenderer bigRenderer;
-    private PlayerSpriteRenderer activeRender;
+    private PlayerSpriteRenderer activeRenderer;
 
     private CapsuleCollider2D capsuleCollider;
     private DeathAnimation deathAnimation;
@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     {
         deathAnimation = GetComponent<DeathAnimation>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
-        activeRender = smallRenderer;
+        activeRenderer = smallRenderer;
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
     public void Hit()
@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
         audioManager.PlaySFX(audioManager.bigJump);
         smallRenderer.enabled = false;
         bigRenderer.enabled = true;
-        activeRender = bigRenderer;
+        activeRenderer = bigRenderer;
 
         capsuleCollider.size = new Vector2(1f,2f);
         capsuleCollider.offset = new Vector2(0f, 0.5f);
@@ -66,10 +66,11 @@ public class Player : MonoBehaviour
     {
         smallRenderer.enabled = true;
         bigRenderer.enabled = false;
-        activeRender = smallRenderer;
+        activeRenderer = smallRenderer;
 
         capsuleCollider.size = new Vector2(1f, 1f);
         capsuleCollider.offset = new Vector2(0f, 0f);
+        StartCoroutine(ScaleAnimation());
     }
 
     private IEnumerator ScaleAnimation()
@@ -84,13 +85,13 @@ public class Player : MonoBehaviour
             if(Time.frameCount % 4 == 0)
             {
                 smallRenderer.enabled = !smallRenderer.enabled; 
-                bigRenderer.enabled = !bigRenderer.enabled;
+                bigRenderer.enabled = !smallRenderer.enabled;
             }
             yield return null;
         }
         smallRenderer.enabled = false;
         bigRenderer.enabled = false;
-        activeRender.enabled = true;
+        activeRenderer.enabled = true;
     }
 
     public void Starpower(float duration = 10f)
@@ -110,11 +111,11 @@ public class Player : MonoBehaviour
 
             if (Time.frameCount % 4 == 0)
             {
-                activeRender.spriteRenderer.color = Random.ColorHSV(0f, 1f, 1f, 1f, 1f,1f);
+                activeRenderer.spriteRenderer.color = Random.ColorHSV(0f, 1f, 1f, 1f, 1f,1f);
             }
             yield return null;
         }
-        activeRender.spriteRenderer.color = Color.white;
+        activeRenderer.spriteRenderer.color = Color.white;
         starpower = false;
        
     }

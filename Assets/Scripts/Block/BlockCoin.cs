@@ -7,10 +7,12 @@ public class BlockCoin : MonoBehaviour
 {
     AudioManager audioManager;
     ScoreManager scoreManager;
+    CoinManager coinManager;
     private void Start()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         scoreManager = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreManager>();
+        coinManager = GameObject.FindGameObjectWithTag("CoinManager").GetComponent<CoinManager>();
         GameManager.Instance.AddCoin();
         StartCoroutine(Animate());
     }
@@ -18,6 +20,7 @@ public class BlockCoin : MonoBehaviour
     {
         audioManager.PlaySFX(audioManager.coin);
         scoreManager.AddScore();
+        coinManager.AddCoin();
         Vector3 restingPosition = transform.localPosition;
         Vector3 animatedPosition = restingPosition + Vector3.up * 2f;
 

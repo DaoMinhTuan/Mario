@@ -6,11 +6,13 @@ public class PowerUp : MonoBehaviour
 {
     AudioManager audioManager;
     ScoreManager scoreManager;
+    CoinManager coinManager;
 
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         scoreManager = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreManager>();
+        coinManager = GameObject.FindGameObjectWithTag("CoinManager").GetComponent<CoinManager>();
     }
     public enum Type
     {
@@ -36,11 +38,14 @@ public class PowerUp : MonoBehaviour
              case Type.Coin:
                 audioManager.PlaySFX(audioManager.coin);
                 scoreManager.AddScore();
+                coinManager.AddCoin();
                 GameManager.Instance.AddCoin();
                 break;
 
             case Type.ExtraLife:
+                audioManager.PlaySFX(audioManager.powerUp);
                 GameManager.Instance.AddLife();
+                scoreManager.EatingPowerUp();
                 break;
 
             case Type.MagicMushroom:

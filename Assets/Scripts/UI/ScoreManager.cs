@@ -29,16 +29,6 @@ public class ScoreManager: MonoBehaviour
         score += 1000;
         UpdateScoreUI();
     }
-
-    public void UpdateScoreFromTimeBonus(int timeBonus)
-    {
-        int timeBonusMultiplier = 10; //ty le de chuyen doi thoi gian con lai thanh diem so
-        int timeBonusScore = timeBonus * timeBonusMultiplier;
-        score += timeBonusScore;
-
-        UpdateScoreUI();
-    }
-
     void UpdateScoreUI()
     {
         // cap nhat text hien thi diem

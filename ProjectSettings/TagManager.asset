@@ -8,6 +8,7 @@ TagManager:
   - item
   - Coin
   - Score
+  - CoinManager
   layers:
   - Default
   - TransparentFX

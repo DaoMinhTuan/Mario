@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class CoinManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public int coin = 0;
+
+    public Text coinText;// hien thi tren giao dien
+
+    public void AddCoin()
     {
-        
+        coin ++;
+        UpdateCoinUI();
     }
 
-    // Update is called once per frame
-    void Update()
+    void UpdateCoinUI()
     {
-        
+        // cap nhat text hien thi diem
+        coinText.text = coin.ToString("D2");
     }
 }
